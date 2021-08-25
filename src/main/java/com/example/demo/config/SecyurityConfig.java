@@ -22,8 +22,10 @@ public class SecyurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(securityService)
+        auth.
+        userDetailsService(securityService)
                 .passwordEncoder(passwordEncoder);
+
   }
 
     @Override
@@ -33,7 +35,7 @@ public class SecyurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/company/**")
                 .hasAnyAuthority("company")
                 .antMatchers(HttpMethod.GET, "/employees")
-                .hasAnyAuthority("company", "ADMIN")
+                .hasAnyAuthority("company", "employe")
                 .antMatchers(HttpMethod.GET, "/")
                 .permitAll()
                 .and()
@@ -47,8 +49,6 @@ public class SecyurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin();
     }
-    @Bean
-    public PasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
-    }
+
+
 }
